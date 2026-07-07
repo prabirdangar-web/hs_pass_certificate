@@ -557,7 +557,16 @@
         <div class="cert-footer">
             <div class="seal-block">
                 <div>
-                    <strong>Dated:</strong> <span id="certFooterDate">Wednesday, 30 June, 2026</span><br>
+                    <strong>Dated:</strong> <span id="certFooterDate"><p>Date: <span id="today"></span></p>
+
+<script>
+const today = new Date();
+const dd = String(today.getDate()).padStart(2, '0');
+const mm = String(today.getMonth() + 1).padStart(2, '0');
+const yyyy = today.getFullYear();
+
+document.getElementById("today").textContent = `${dd}-${mm}-${yyyy}`;
+</script></span><br>
                     <strong>Place:</strong> Taldangra
                 </div>
                 <div class="seal-area">School Seal</div>
