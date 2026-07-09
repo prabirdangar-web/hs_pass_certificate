@@ -492,7 +492,7 @@
 
             <div class="memo-header" id="certSpDibRow">
                 <div>Ref:</div>
-                <div>SP DIB Vide Memo No.: <span id="certMemo"></span></div>
+                <div>SP DIB Vide Memo No. Bankura , <span id="certMemo"></span></div>
                 <div style="text-align: right;">Dated:- <span id="certMemoDate"></span></div>
             </div>
             
@@ -507,9 +507,9 @@
                 District.- <span id="certDist" class="fill-blank"></span> ; P.I.N.- <span id="certPIN" class="fill-blank"></span> 
                 <span id="certTrackSegment">passed the Madhyamik Pariksha [S.E.] from this school in the year - <span id="certMPYearText" style="font-weight: bold; font-style: normal;"></span> as a <span id="certCatText1" style="font-style: normal;">Regular</span> candidate & </span>Higher Secondary Examination from this school in the year - <span id="certHSYearText" style="font-weight:bold; font-style: normal;"></span> as a <span id="certCatText2" style="font-style: normal;">Regular</span> candidate in <span id="certStreamTxt" style="font-weight:bold; font-style: normal;">General [Science]</span> stream course 
                 and left the school on <span id="certLeavingDateText" class="fill-blank"></span>. During <span id="lblPossessive1">his</span> stay in this school <span id="lblSubject">he</span> always impressed me by <span id="lblPossessive2">his</span> good conduct. 
-                His date of birth recorded in the admission Register is <span id="certDOB" class="fill-blank"></span>. 
+                <span id="lblPossessive3">His</span> date of birth recorded in the admission Register is <span id="certDOB" class="fill-blank"></span>. 
                 [ <span id="certDOBWords" style="font-style: normal; font-weight: bold;"></span> ] 
-                So far as my knowledge goes <span id="lblSubject2">he</span> bears a good moral character. I wish <span id="lblObjective">him</span> all success in life.
+                .  So far as my knowledge goes <span id="lblSubject2">he</span> bears a good moral character. I wish <span id="lblObjective">him</span> all success in life.
             </div>
             
             <div class="marks-summary-section">
@@ -548,7 +548,7 @@
                     </tbody>
                 </table>
                 
-                <div style="font-size: 12pt; margin-top: 4px;">
+                <div id="certBSIDRow" style="font-size: 12pt; margin-top: 4px;">
                     <strong>Banglar Shiksha Portal ID:</strong> <span id="certBSID" class="fill-blank" style="font-family:monospace; letter-spacing:0.5px;"></span>
                 </div>
             </div>
@@ -557,7 +557,7 @@
         <div class="cert-footer">
             <div class="seal-block">
                 <div>
-                    <strong>Dated:</strong> <span id="certFooterDate"><p>Date: <span id="today"></span></p>
+                    </strong> <span id="certFooterDate"><p>Date: <span id="today"></span></p>
 
 <script>
 const today = new Date();
@@ -708,7 +708,14 @@ document.getElementById("today").textContent = `${dd}-${mm}-${yyyy}`;
         document.getElementById('certPS').innerText = document.getElementById('inputPS').value.toUpperCase();
         document.getElementById('certDist').innerText = document.getElementById('inputDist').value.toUpperCase();
         document.getElementById('certPIN').innerText = document.getElementById('inputPIN').value;
-        document.getElementById('certBSID').innerText = document.getElementById('inputBSID').value;
+        let bsidVal = document.getElementById('inputBSID').value;
+        let bsidRow = document.getElementById('certBSIDRow');
+        if (!bsidVal || bsidVal.trim().toUpperCase() === 'NA' || bsidVal.trim() === '') {
+            bsidRow.style.display = 'none';
+        } else {
+            bsidRow.style.display = 'block';
+            document.getElementById('certBSID').innerText = bsidVal;
+        }
         
         let cat = document.getElementById('inputCategory').value;
         document.getElementById('certCatText1').innerText = cat;
@@ -745,12 +752,15 @@ document.getElementById("today").textContent = `${dd}-${mm}-${yyyy}`;
         let sexVal = document.getElementById('inputSex').value;
         let subParent = sexVal === "Female" ? "Daughter" : "Son";
         let subPr1 = sexVal === "Female" ? "her" : "his";
+        let subPr1Cap = sexVal === "Female" ? "Her" : "His";
         let subPr2 = sexVal === "Female" ? "she" : "he";
         let subPr3 = sexVal === "Female" ? "her" : "him";
+
 
         document.getElementById('lblParentage').innerText = subParent;
         document.getElementById('lblPossessive1').innerText = subPr1;
         document.getElementById('lblPossessive2').innerText = subPr1;
+        document.getElementById('lblPossessive3').innerText = subPr1Cap;
         document.getElementById('lblSubject').innerText = subPr2;
         document.getElementById('lblSubject2').innerText = subPr2;
         document.getElementById('lblObjective').innerText = subPr3;
